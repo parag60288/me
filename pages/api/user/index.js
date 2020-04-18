@@ -12,7 +12,8 @@ export default async(req, res) => {
   } 
 
   let profile = await content.getContentFromGithub(req.query.username, options).catch(e => {})
-  if(!profile) notFound(res, JSON.stringify({ error: 'profile not found' }))
+  console.log(profile)
+  if(!profile) return notFound(res, JSON.stringify({ error: 'profile not found' }))
   res.statusCode = 200
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(profile))
